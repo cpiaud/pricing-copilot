@@ -132,6 +132,7 @@ const toCSV = rows => [FIELDS.join(','), ...rows.map(r => FIELDS.map(f => esc(r[
 
 // Minimal reader for the previous CSV, used for the change summary.
 function fromCSV(text) {
+  text = text.replace(/\r\n/g, '\n');
   const out = [];
   let row = [], field = '', q = false;
   for (let i = 0; i < text.length; i++) {
@@ -168,7 +169,7 @@ async function main() {
   const rows = parse(await load());
   if (!rows.length) fail('no rows extracted');
 
-  const previous = existsSync(CSV_PATH) ? await readFile(CSV_PATH, 'utf8') : '';
+  const previous = existsSync(CSV_PATH) ? (await readFile(CSV_PATH, 'utf8')).replace(/\r\n/g, '\n') : '';
   const prevRows = previous ? fromCSV(previous) : [];
   if (prevRows.length && rows.length < prevRows.length / 2) {
     fail(`${rows.length} rows extracted vs. ${prevRows.length} before — page probably changed, nothing written`);

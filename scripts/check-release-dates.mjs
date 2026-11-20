@@ -18,6 +18,7 @@ const fail = msg => { console.error(`✗ ${msg}`); process.exit(1); };
 
 // Minimal CSV reader (quoted fields), same as scripts/update-scores.mjs.
 function fromCSV(text) {
+  text = text.replace(/\r\n/g, '\n');
   const out = [];
   let row = [], field = '', q = false;
   for (let i = 0; i < text.length; i++) {

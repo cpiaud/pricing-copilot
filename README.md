@@ -43,7 +43,7 @@ No build or dependencies (Geist fonts load from Google Fonts, with a system fall
 
 ## Scores (Artificial Analysis)
 
-- Source: the free API `GET https://artificialanalysis.ai/api/v2/data/llms/models` (`x-api-key` header, 1,000 requests/day). The key must never reach client-side code, so the page only reads the committed `data/scores.csv`. Attribution to https://artificialanalysis.ai/ is required and shown in the footer.
+- Source: the free API `GET https://artificialanalysis.ai/api/v2/language/models/free` (`x-api-key` header, 1,000 requests/day). The key must never reach client-side code, so the page only reads the committed `data/scores.csv`. Attribution to https://artificialanalysis.ai/ is required and shown in the footer.
 - `data/aa-mapping.json`: hand-maintained map from the Copilot `model` name to the Artificial Analysis base name (its `name` without the parenthesised effort, e.g. `Claude 4.5 Haiku`). `null` marks a model absent from Artificial Analysis. A model missing from the map is looked up under its own name; add an entry only when the Artificial Analysis name differs (the script warns when neither matches).
 - Effort: Artificial Analysis lists one entry per reasoning effort. For each index separately, the script takes **High**, else the nearest variant that has that index: High > Xhigh > Medium > Max > Low > Reasoning (unlabeled) > Minimal > Non-reasoning.
 - `data/scores.csv`: one row per Copilot model with at least one index. Per index (`coding`, `intelligence`): the score, then `<index>Effort`, `<index>AaName`, `<index>AaId` of the variant used; empty when Artificial Analysis has no score yet.
@@ -53,7 +53,7 @@ No build or dependencies (Geist fonts load from Google Fonts, with a system fall
 node --env-file=.env scripts/update-scores.mjs   # needs ARTIFICIAL_INTELLIGENCE_API_KEY in .env (git-ignored)
 ```
 
-Run manually (not in CI). Same safeguards as the pricing script: nothing is written when unchanged or when fewer than half the previous models match. `SCORES_SOURCE=path/to/response.json` parses a saved API response instead.
+The GitHub Pages workflow runs this in CI. Same safeguards as the pricing script: nothing is written when unchanged or when fewer than half the previous models match. `SCORES_SOURCE=path/to/response.json` parses a saved API response instead.
 
 ## Release dates
 
@@ -86,4 +86,10 @@ node scripts/update-pricing.mjs
 
 Fetches the page, rewrites `data/models.csv`, and touches `data/meta.json` only when the data changed. It logs added, removed and repriced models. It exits with an error and writes nothing if the page can't be parsed (missing columns, unreadable price, or fewer than half the previous rows). `PRICING_SOURCE=path/to/page.md` parses a local file instead.
 
-`.github/workflows/update-pricing.yml` runs it every day at 06:17 UTC (and on demand via *Run workflow*) and commits `data/` when it changed. That push redeploys GitHub Pages.
+### GitHub Pages et actualisation automatique
+
+Dans GitHub, ouvrir **Settings → Secrets and variables → Actions → New repository secret** et créer `ARTIFICIAL_INTELLIGENCE_API_KEY` avec une clé API Artificial Analysis. Ne pas la placer dans le dépôt. Dans **Settings → Pages**, choisir **GitHub Actions** comme source. Sur un fork, activer également les workflows dans l'onglet **Actions** si nécessaire.
+
+Le workflow `.github/workflows/pages.yml` actualise les tarifs et les scores puis publie les fichiers statiques à chaque push sur `main`, manuellement via **Actions → Update data and deploy Pages → Run workflow**, et chaque jour à 7 h et 12 h dans le fuseau `Europe/Paris` (heure d'été comprise). GitHub peut retarder un lancement planifié. Les données générées sont publiées comme artifact Pages, sans commit automatique ; une erreur d'actualisation empêche le remplacement du site existant. Les workflows planifiés sur un dépôt public peuvent être désactivés après 60 jours d'inactivité.
+
+Retrouver l'adresse du site dans **Settings → Pages** ou dans le résultat du job de déploiement. Localement, créer `.env` (ignoré par Git) contenant `ARTIFICIAL_INTELLIGENCE_API_KEY=<clé>` puis lancer `node --env-file=.env scripts/update-scores.mjs`. Lancer le site avec `python -m http.server 8000` et ouvrir http://localhost:8000. Les appels à Artificial Analysis restent côté CI ou Node, jamais dans le navigateur.

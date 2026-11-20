@@ -14,7 +14,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const PAGE = 'https://artificialanalysis.ai/';
-const SOURCE = 'https://artificialanalysis.ai/api/v2/data/llms/models';
+const SOURCE = 'https://artificialanalysis.ai/api/v2/language/models/free';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const MODELS_PATH = join(ROOT, 'data', 'models.csv');
 const MAPPING_PATH = join(ROOT, 'data', 'aa-mapping.json');
@@ -38,9 +38,20 @@ async function load() {
   if (process.env.SCORES_SOURCE) return JSON.parse(await readFile(process.env.SCORES_SOURCE, 'utf8'));
   const key = process.env.ARTIFICIAL_INTELLIGENCE_API_KEY;
   if (!key) fail('ARTIFICIAL_INTELLIGENCE_API_KEY is not set (run with node --env-file=.env)');
-  const res = await fetch(SOURCE, { headers: { 'x-api-key': key } });
-  if (!res.ok) fail(`HTTP ${res.status} on ${SOURCE}`);
-  return res.json();
+  const data = [];
+  for (let page = 1; page <= 100; page++) {
+    const res = await fetch(`${SOURCE}?page=${page}`, { headers: { 'x-api-key': key } });
+    if (!res.ok) {
+      const reason = { 401: 'invalid API key', 403: 'endpoint not allowed by subscription', 429: 'API rate limit exceeded' }[res.status]
+        ?? (res.status >= 500 ? 'Artificial Analysis server error' : 'request failed');
+      fail(`HTTP ${res.status}: ${reason}`);
+    }
+    const result = await res.json();
+    if (!Array.isArray(result.data) || !result.pagination || result.pagination.page !== page || typeof result.pagination.has_more !== 'boolean') fail('invalid API response or pagination');
+    data.push(...result.data);
+    if (!result.pagination.has_more) return { data };
+  }
+  fail('API pagination exceeded 100 pages');
 }
 
 // "Claude Opus 5.5 (High, Default Fallback)" → "High"; "Claude Sonnet 5 (Non-reasoning, High)" → "Non-reasoning".
@@ -67,6 +78,7 @@ const toCSV = rows => [FIELDS.join(','), ...rows.map(r => FIELDS.map(f => esc(r[
 
 // Minimal CSV reader (quoted fields), for models.csv and the previous scores.csv.
 function fromCSV(text) {
+  text = text.replace(/\r\n/g, '\n');
   const out = [];
   let row = [], field = '', q = false;
   for (let i = 0; i < text.length; i++) {
@@ -125,7 +137,7 @@ async function main() {
   }
   if (!rows.length) fail('no model matched');
 
-  const previous = existsSync(CSV_PATH) ? await readFile(CSV_PATH, 'utf8') : '';
+  const previous = existsSync(CSV_PATH) ? (await readFile(CSV_PATH, 'utf8')).replace(/\r\n/g, '\n') : '';
   const prevRows = previous ? fromCSV(previous) : [];
   if (prevRows.length && rows.length < prevRows.length / 2) {
     fail(`${rows.length} models matched vs. ${prevRows.length} before — API probably changed, nothing written`);
