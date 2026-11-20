@@ -1,95 +1,11 @@
-# Copilot Model Pricing
+# Pricing Copilot
 
-`index.html` is the start page, a simple view for readers who don't follow model news (business analysts, developers, occasional users). They fill in one sentence, "I work as a [role] and I want to [task]" (Business analyst or Developer, each with six tasks from light to heavy, in `ROLES`), and get one suggested model: the cheapest whose Artificial Analysis score (Intelligence Index, or Coding Index for code tasks) reaches a share of the top Copilot score set per task (60% for rewriting up to 98% for hard problems; developer tasks all use the Coding Index). It also names a cheaper and a stronger option, and how many agent requests a monthly budget buys with each (default 6,000 credits, editable inside the answer sentence, `?credits=` and `?task=` in the URL, saved under `copilot-start`). The quality score, cost per request, the rule applied and how requests a month are counted are folded under "Why this model?". Below the answer: three habits that make credits last. The full list of models lives on the detail pages ("See every model" links to page 2). Older versions (same provider and line, e.g. Claude Sonnet 4.6 next to Claude Sonnet 5.5, matched by the name without its version number) are never suggested. No model name is hard-coded: suggestions are recomputed from the data at load.
+Un nouveau projet pour aider à comparer les modèles d’intelligence artificielle proposés dans GitHub Copilot, leurs tarifs et leurs performances selon les tâches.
 
-`cost.html` is page 1, Cost & value: which model is worth its price. Three picks from the Pareto frontier of the models in view (Best overall = top score, Best value = cheapest with ≥ 90% of it, Cheapest that’s still good = ≥ 75%), then one row per scored model with its [Artificial Analysis](https://artificialanalysis.ai/) score (Intelligence Index by default, Coding with the Score switch, `cost.html?score=coding`) and its blended price in AI credits per 1M tokens (1 credit = $0.01) as bars, the price bar on a square-root scale so cheap models stay visible; hovering a price shows the input/output split. Rows are grouped: Worth it (on the frontier, nothing cheaper scores as well) then Others, each with the cheaper model to try instead and how many times cheaper it is. Heads sort by model, score, price or verdict. The mix comes from the shared state (default 90/10, `cost.html?in=80`) and is set on page 2; Filters narrows by provider and class. Models without the selected index are named under the list. It replaces the former Cost (price bars) and Value (price-vs-score scatter) pages; `performance.html` now redirects here with its query string.
+## État du projet
 
-`tokens.html` is a companion page: how many tokens a budget of AI credits buys with each model (default 6,000 credits = $60, 1 credit = $0.01). It blends each model's prices by an input/output mix (default 90% input / 10% output): `tokens = credits ÷ (r × input + (1 − r) × output) × 1M`, prices in credits, and draws one stacked bar per model (input tint, then output solid) on a linear token scale, with "N× more" tokens than the priciest model in view (worded differently from page 1's ×N, which counts times the cheapest price, so the two aren't confused). Budget and mix are adjustable and reflected in the URL (`tokens.html?credits=10000&in=80`). List prices only: caching is not included. Long-context tiers are hidden by default.
+Le projet démarre : ses fonctionnalités, ses sources de données et son interface restent à définir. La branche `develop` accueille ce travail de conception et de développement.
 
+## Licence
 
-`compare.html` puts 2 to 5 models side by side as a spec sheet: one column per model, one row per attribute, grouped in sections (Model, Scores, Prices, Long context when a chosen model has one, At your mix, Notes). It shows every field we hold: both Artificial Analysis indexes with the variant used and the rank among all scored Copilot models, input, cached input (with the discount), cache write, output and output ÷ input, long-context rates, and at the mix: blended price, AI credits per agent request, coding points per 100 credits and whether the model is on the coding frontier. The best value in each row gets a ★; every other column shows its gap to the baseline column (first model by default, ×N for prices, points for scores), coloured better or worse. A *Differences only* switch hides rows where all chosen models agree. Models are picked with a filterable list (type, ↑/↓, Enter). The selection is in the URL (`compare.html?m=GPT-6%20Sol&m=Claude%20Opus%205.5&base=1&in=80`) and in the shared state (`compare`), so it follows the reader; with neither, the page starts with the top Coding Index of each class. `?focus=<model>` from another page's pinned tooltip adds that model (replacing the last one when 5 are shown).
-
-`timeline.html` places each model at its release date (`data/release-dates.csv`). The Price view (default) puts the blended price on a linear y axis from 0; models scoring below a threshold on the selected Artificial Analysis index (Coding 70 or Intelligence 40 by default, adjustable) are faded, those without the index are hollow. The Score view (`timeline.html?y=score`) puts the index on y, with the threshold as a dashed line. The sentence above the chart compares the cheapest model reaching the threshold today with the first one that did (Price view), or the first and latest best scores (Score view), and flags a promotional price. Prices are today's list prices, not a history. URL: `?y=score&score=intelligence&min=45&in=80`; page settings saved under `copilot-timeline-view`.
-
-All pages share a tab nav at the top, phrased as the questions they answer: the start page (Which model should I use?), then the detail pages numbered in reading order (1 · Which model is worth its price? · 2 · What does my budget buy? · 3 · How do they compare? · 4 · Is it getting cheaper?, shortened to Start · Cost & value · Budget · Compare · Timeline when the header is too narrow, measured with a container query on the header; `index.html` has a narrower column, so its header breaks out to the other pages' width and the tab bar looks the same everywhere); its CSS (`.site-nav`) is duplicated in each page, so keep the five copies in sync. On phones the tab strip scrolls and `shared.js` brings the current tab into view.
-
-Pages 2 to 4 open the chart with a plain-language takeaway sentence (`#takeaway`), recomputed on every render: the budget in agent requests of 50K tokens (page 2), the best coder among the chosen models and how much cheaper the cheapest one is per agent request (page 3), how much cheaper the cheapest model reaching the threshold is today than the first one that did (page 4). Page 1 answers with its three picks instead.
-
-`shared.js` (loaded before each page's script) holds what the pages share:
-- **State that follows the reader**: the input/output mix, the provider and class filters and the compare shortlist live in one `localStorage` key, `copilot-shared`; it overrides each page's own saved state, and URL parameters override both. A page that lists fewer providers or classes (`cost.html` only lists scored models) leaves the others' state untouched when it saves. Page-specific settings (view, budget, score, long context) stay in each page's key.
-- **Compare on other pages**: hovering a row or dot previews its tooltip; clicking it (or Enter) pins it, and the pinned tooltip links to the same model on the other pages with `?focus=<model>`. The target page shows the model even if filters hid it, scrolls to it and pins it (an unscored model is highlighted in the "Not scored yet" list). `focus` is removed from the URL once used.
-- `REQUEST_TOKENS` (50K, one agent step), used for the "Agent requests" unit on `tokens.html` and the "1 agent request" tooltip line on `cost.html`.
-
-
-`glossary.js` (shared, loaded by all pages) adds short definitions to jargon: put `<button class="gl" data-gl="input"></button>` after a term; the keys are in its `GLOSSARY` object. Buttons created at render time work too (events are delegated; call `glossaryBind(btn)` to label them).
-
-All pages load `data/models.csv` with `fetch()`, so it must be served over HTTP (GitHub Pages in production). Locally:
-
-```sh
-python3 -m http.server   # then open http://localhost:8000
-```
-
-No build or dependencies (Geist fonts load from Google Fonts, with a system fallback).
-
-## Data
-
-- Source: https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing (raw markdown: `https://docs.github.com/api/article/body?pathname=/en/copilot/reference/copilot-billing/models-and-pricing`).
-- `data/models.csv`: one row per model and tier, prices in USD per million tokens (the pages convert them to AI credits for display, keeping USD as a secondary figure in tooltips and on `compare.html`). Columns: `provider,family,model,category,status,tier,threshold,input,cachedInput,cacheWrite,output,note`. `category` (Lightweight / Versatile / Powerful) and `status` (release status, e.g. GA) are taken as-is from the page.
-- `data/meta.json`: source URL and `updated`, the date the data last changed (shown in the footer).
-- `family` drives the grouping: version for OpenAI and xAI (GPT-6, GPT-5.6, Grok 4.7…), product line for Claude (Opus, Sonnet, Haiku, Fable). Derived by `FAMILY_RULES` in the script.
-- Each "Long context" tier is its own row (`tier=long`) and is drawn as an outlined bar with a `long context > …` suffix.
-- `cachedInput` and `cacheWrite` are only displayed on `compare.html`; the other pages use list input and output prices.
-- A provider not in the page's color list shows up automatically in a neutral grey.
-
-## Scores (Artificial Analysis)
-
-- Source: the free API `GET https://artificialanalysis.ai/api/v2/language/models/free` (`x-api-key` header, 1,000 requests/day). The key must never reach client-side code, so the page only reads the committed `data/scores.csv`. Attribution to https://artificialanalysis.ai/ is required and shown in the footer.
-- `data/aa-mapping.json`: hand-maintained map from the Copilot `model` name to the Artificial Analysis base name (its `name` without the parenthesised effort, e.g. `Claude 4.5 Haiku`). `null` marks a model absent from Artificial Analysis. A model missing from the map is looked up under its own name; add an entry only when the Artificial Analysis name differs (the script warns when neither matches).
-- Effort: Artificial Analysis lists one entry per reasoning effort. For each index separately, the script takes **High**, else the nearest variant that has that index: High > Xhigh > Medium > Max > Low > Reasoning (unlabeled) > Minimal > Non-reasoning.
-- `data/scores.csv`: one row per Copilot model with at least one index. Per index (`coding`, `intelligence`): the score, then `<index>Effort`, `<index>AaName`, `<index>AaId` of the variant used; empty when Artificial Analysis has no score yet.
-- `data/scores-meta.json`: `updated`, the date the scores last changed.
-
-```sh
-node --env-file=.env scripts/update-scores.mjs   # needs ARTIFICIAL_INTELLIGENCE_API_KEY in .env (git-ignored)
-```
-
-The GitHub Pages workflow runs this in CI. Same safeguards as the pricing script: nothing is written when unchanged or when fewer than half the previous models match. `SCORES_SOURCE=path/to/response.json` parses a saved API response instead.
-
-## Release dates
-
-- `data/release-dates.csv`: hand-maintained release history (`company,model,release_date`, ISO dates), sorted by date. It covers more models than Copilot offers. `company` and `model` are the vendor's names, not Copilot's.
-- `data/release-mapping.json`: map from the Copilot `model` name to the `model` in `release-dates.csv` (e.g. `Claude Opus 4.8 (fast mode) (preview)` → `Claude Opus 4.8`). `null` marks a model with no known date. A model missing from the map is looked up under its own name; add an entry only when the names differ, and a dated row if the model is new to the history.
-
-```sh
-node scripts/check-release-dates.mjs
-```
-
-Read-only. Fails on a bad date, a duplicate model, or a mapping that points to a missing row; warns about Copilot models with no mapping or no date.
-
-## Release dates
-
-- `data/release-dates.csv`: hand-maintained, one row per model (`company,model,release_date`), the provider's release date, wider than the Copilot list.
-- `data/release-mapping.json`: Copilot `model` name → name in `release-dates.csv` (`null` when unknown; such models are listed under the timeline).
-- `node scripts/check-release-dates.mjs` checks dates, duplicates and the mapping against `data/models.csv` (read-only). Add a row and a mapping entry when Copilot adds a model.
-
-## Update
-
-```sh
-./update.sh   # pricing, scores (needs .env for the scores step), then the release-date check
-```
-
-Or each script on its own:
-
-```sh
-node scripts/update-pricing.mjs
-```
-
-Fetches the page, rewrites `data/models.csv`, and touches `data/meta.json` only when the data changed. It logs added, removed and repriced models. It exits with an error and writes nothing if the page can't be parsed (missing columns, unreadable price, or fewer than half the previous rows). `PRICING_SOURCE=path/to/page.md` parses a local file instead.
-
-### GitHub Pages et actualisation automatique
-
-Dans GitHub, ouvrir **Settings → Secrets and variables → Actions → New repository secret** et créer `ARTIFICIAL_INTELLIGENCE_API_KEY` avec une clé API Artificial Analysis. Ne pas la placer dans le dépôt. Dans **Settings → Pages**, choisir **GitHub Actions** comme source. Sur un fork, activer également les workflows dans l'onglet **Actions** si nécessaire.
-
-Le workflow `.github/workflows/pages.yml` actualise les tarifs et les scores puis publie les fichiers statiques à chaque push sur `main`, manuellement via **Actions → Update data and deploy Pages → Run workflow**, et chaque jour à 7 h et 12 h dans le fuseau `Europe/Paris` (heure d'été comprise). GitHub peut retarder un lancement planifié. Les données générées sont publiées comme artifact Pages, sans commit automatique ; une erreur d'actualisation empêche le remplacement du site existant. Si le secret est absent, les prix sont actualisés et les scores existants sont conservés. Les workflows planifiés sur un dépôt public peuvent être désactivés après 60 jours d'inactivité.
-
-Retrouver l'adresse du site dans **Settings → Pages** ou dans le résultat du job de déploiement. Localement, créer `.env` (ignoré par Git) contenant `ARTIFICIAL_INTELLIGENCE_API_KEY=<clé>` puis lancer `node --env-file=.env scripts/update-scores.mjs`. Lancer le site avec `python -m http.server 8000` et ouvrir http://localhost:8000. Les appels à Artificial Analysis restent côté CI ou Node, jamais dans le navigateur.
+Le nouveau projet est placé sous [licence MIT](LICENSE).
