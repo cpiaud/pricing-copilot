@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -166,7 +166,7 @@ h1 {
 .heads button:hover, .heads button[aria-pressed="true"] { color: var(--ink); }
 .heads .arrow { letter-spacing: 0; color: var(--ink-2); }
 .card { background: var(--surface); border: 1px solid var(--rule); border-radius: 12px; padding-bottom: 12px; }
-.group-h { display: flex; align-items: baseline; gap: 12px; padding: 28px 24px 10px; }
+.group-h { display: flex; align-items: référence; gap: 12px; padding: 28px 24px 10px; }
 .group-h .t { font: 600 15px/1 var(--font-sans); letter-spacing: 0; text-transform: none; gap: 8px; }
 .group-h .t .check { width: 14px; height: 14px; }
 .group-h.others .t { color: var(--ink-2); }
@@ -188,7 +188,7 @@ h1 {
 .meter.price .fill { min-width: 3px; }
 .meter .v { font: 500 14px/1 var(--font-mono); text-align: right; font-variant-numeric: tabular-nums; }
 .meter.price { cursor: help; }
-.take { display: flex; align-items: baseline; gap: 8px; min-width: 0; font-size: 14px; white-space: nowrap; }
+.take { display: flex; align-items: référence; gap: 8px; min-width: 0; font-size: 14px; white-space: nowrap; }
 .take .a { overflow: hidden; text-overflow: ellipsis; }
 .row.worth .take .a { color: var(--good); }
 .take .b { color: var(--ink-3); }
@@ -239,37 +239,40 @@ footer a { color: var(--ink-2); text-underline-offset: 3px; text-decoration-colo
 <div class="app">
   <div class="masthead">
     <nav class="site-nav" aria-label="Pages">
-      <a class="brand" href="./"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.01 8.01 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg><span class="b-t"><span class="b-name">Copilot pricing</span><span class="q">Which model should I use?</span></span></a>
-      <button type="button" class="steps-btn" aria-expanded="false" aria-controls="steps"><span class="n">1</span>Cost &amp; value<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
+      <a class="brand" href="./"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.01 8.01 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg><span class="b-t"><span class="b-name">Copilot pricing</span><span class="q">Quel modèle choisir ?</span></span></a>
+      <button type="button" class="steps-btn" aria-expanded="false" aria-controls="steps"><span class="n">1</span>Coût et valeur<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
       <ol class="steps" id="steps">
-        <li><a href="cost.html" aria-current="page"><span class="n">1</span><span class="t">Cost &amp; value</span><span class="q">Which model is worth its price?</span></a></li>
-        <li><a href="tokens.html"><span class="n">2</span><span class="t">Budget</span><span class="q">What does my budget buy?</span></a></li>
-        <li><a href="compare.html"><span class="n">3</span><span class="t">Compare</span><span class="q">How do they compare?</span></a></li>
-        <li><a href="timeline.html"><span class="n">4</span><span class="t">Timeline</span><span class="q">Is it getting cheaper?</span></a></li>
+        <li><a href="cost.html" aria-current="page"><span class="n">1</span><span class="t">Coût et valeur</span><span class="q">Quel modèle vaut son prix ?</span></a></li>
+        <li><a href="tokens.html"><span class="n">2</span><span class="t">Budget</span><span class="q">Que permet mon budget ?</span></a></li>
+        <li><a href="compare.html"><span class="n">3</span><span class="t">Comparer</span><span class="q">Comment se comparent-ils ?</span></a></li>
+        <li><a href="timeline.html"><span class="n">4</span><span class="t">Historique</span><span class="q">Les prix baissent-ils ?</span></a></li>
       </ol>
     </nav>
+    <div class="header-actions">
     <button type="button" class="theme-btn" id="theme-toggle" aria-pressed="false">
       <svg class="moon" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5a5.5 5.5 0 1 0 7 7Z"/></svg>
       <svg class="sun" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3"/><path d="M8 1.5v1.5M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1 1M11.6 11.6l1 1M3.4 12.6l1-1M11.6 4.4l1-1"/></svg>
-      <span id="theme-label">Dark mode</span>
+      <span id="theme-label">Mode sombre</span>
     </button>
+    <span id="refresh-date" class="refresh-date" aria-live="polite">Actualisation…</span>
+    </div>
   </div>
 
   <header class="intro">
     <div>
-      <h1>Which model is worth its price?</h1>
-      <p class="lede">A model is worth it when nothing cheaper scores as well on the <a href="https://artificialanalysis.ai/" target="_blank" rel="noopener">Artificial Analysis</a> <span class="m-label">Intelligence Index</span>.</p>
+      <h1>Quel modèle vaut son prix ?</h1>
+      <p class="lede">Un modèle vaut son prix si aucun modèle moins cher n’obtient un score aussi élevé à l’indice <a href="https://artificialanalysis.ai/" target="_blank" rel="noopener">Artificial Analysis</a> <span class="m-label">indice Intelligence</span>.</p>
     </div>
     <div class="controls">
-      <div class="segmented" role="group" aria-label="Score"><button type="button" data-metric="intelligence" aria-pressed="true">Intelligence</button><button type="button" data-metric="coding" aria-pressed="false">Coding</button></div>
+      <div class="segmented" role="group" aria-label="Score"><button type="button" data-metric="intelligence" aria-pressed="true">Intelligence</button><button type="button" data-metric="coding" aria-pressed="false">Code</button></div>
       <div class="fb-item">
-        <button type="button" class="filters-btn fb-btn" id="filters-btn" aria-expanded="false" aria-controls="pop-filters"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 4h10M4 7h6M6 10h2"/></svg>Filters<span class="badge" id="f-badge" hidden></span></button>
+        <button type="button" class="filters-btn fb-btn" id="filters-btn" aria-expanded="false" aria-controls="pop-filters"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 4h10M4 7h6M6 10h2"/></svg>Filtres<span class="badge" id="f-badge" hidden></span></button>
         <div class="fb-pop filters" id="pop-filters" hidden>
-          <div class="f-group" role="group" aria-labelledby="fl-provider"><span class="f-label" id="fl-provider">Provider</span><div class="f-chips" id="providers"></div></div>
-          <div class="f-group" role="group" aria-labelledby="fl-class"><span class="f-label" id="fl-class">Class</span><div class="f-chips" id="categories"></div></div>
+          <div class="f-group" role="group" aria-labelledby="fl-provider"><span class="f-label" id="fl-provider">Fournisseur</span><div class="f-chips" id="providers"></div></div>
+          <div class="f-group" role="group" aria-labelledby="fl-class"><span class="f-label" id="fl-class">Catégorie</span><div class="f-chips" id="categories"></div></div>
           <div class="f-foot">
-            <button type="button" class="f-clear" id="f-clear">Clear all</button>
-            <button type="button" class="f-show" id="f-show">Show <span id="f-n">0</span> models</button>
+            <button type="button" class="f-clear" id="f-clear">Tout effacer</button>
+            <button type="button" class="f-show" id="f-show">Afficher <span id="f-n">0</span> modèles</button>
           </div>
         </div>
       </div>
@@ -281,10 +284,10 @@ footer a { color: var(--ink-2); text-underline-offset: 3px; text-decoration-colo
 
     <div class="list">
       <div class="cols heads" role="group" aria-label="Sort by" id="heads">
-        <button type="button" data-sort="model">Model<span class="arrow"></span></button>
+        <button type="button" data-sort="model">Modèle<span class="arrow"></span></button>
         <button type="button" data-sort="score"><span class="m-label">Intelligence</span><span class="arrow"></span></button>
-        <button type="button" data-sort="price" title="Credits per 1M tokens, blended by the input/output mix">Price<span class="arrow"></span></button>
-        <button type="button" data-sort="verdict">Our take<span class="arrow"></span></button>
+        <button type="button" data-sort="price" title="Credits per 1M tokens, blended by the input/output mix">Prix<span class="arrow"></span></button>
+        <button type="button" data-sort="verdict">Notre avis<span class="arrow"></span></button>
       </div>
       <div class="card" id="card"></div>
       <p class="note" id="price-note"></p>
@@ -292,7 +295,7 @@ footer a { color: var(--ink-2); text-underline-offset: 3px; text-decoration-colo
     </div>
 
     <footer>
-      <span>Prices: <a href="https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing" target="_blank" rel="noopener">Models and pricing for GitHub Copilot</a></span>
+      <span>Prix : <a href="https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing" target="_blank" rel="noopener">Modèles et tarifs GitHub Copilot</a></span>
       <span>Scores: <a href="https://artificialanalysis.ai/" target="_blank" rel="noopener">Artificial Analysis</a></span>
       <span id="updated"></span>
     </footer>
@@ -305,8 +308,8 @@ footer a { color: var(--ink-2); text-underline-offset: 3px; text-decoration-colo
 const NUMERIC = ['input', 'cachedInput', 'cacheWrite', 'output', 'intelligence', 'coding'];
 // Score switch: column in data/scores.csv → labels.
 const METRICS = {
-  intelligence: { label: 'Intelligence Index', short: 'Intelligence' },
-  coding: { label: 'Coding Index', short: 'Coding' },
+  intelligence: { label: 'indice Intelligence', short: 'Intelligence' },
+  coding: { label: 'indice de programmation', short: 'Coding' },
 };
 
 function parseCSV(text) {
@@ -342,7 +345,7 @@ Promise.all([text('data/models.csv'), text('data/scores.csv'), json('data/meta.j
     console.error(err);
     const p = document.createElement('p');
     p.className = 'empty';
-    p.textContent = 'Couldn’t load data/models.csv or data/scores.csv. Serve the page over HTTP (python3 -m http.server).';
+    p.textContent = "Impossible de charger les données. Servez le site en HTTP (python3 -m http.server).";
     document.getElementById('card').replaceChildren(p);
   });
 
@@ -371,9 +374,9 @@ function init(ALL, SCORES, meta, scoresMeta) {
   const presentCats = new Set(MODELS.map(m => m.category));
   const CATEGORIES = [...CAT_ORDER.filter(c => presentCats.has(c)), ...[...presentCats].filter(c => !CAT_ORDER.includes(c))];
 
-  const fmtDate = s => new Date(s + 'T00:00:00').toLocaleDateString('en-US', { dateStyle: 'long' });
-  $('updated').textContent = [meta.updated && 'Prices updated ' + fmtDate(meta.updated),
-    scoresMeta.updated && 'scores updated ' + fmtDate(scoresMeta.updated)].filter(Boolean).join(', ');
+  const fmtDate = s => new Date(s + 'T00:00:00').toLocaleDateString('fr-FR', { dateStyle: 'long' });
+  $('updated').textContent = [meta.updated && "Prix modifiés le " + fmtDate(meta.updated),
+    scoresMeta.updated && "scores modifiés le " + fmtDate(scoresMeta.updated)].filter(Boolean).join(', ');
 
   const colorOf = p => `var(${(PROVIDERS.find(x => x.name === p) || KNOWN.find(x => x.name === p))?.color || '--s-other'})`;
   // Prices are held in USD and shown in AI credits.
@@ -476,14 +479,14 @@ function init(ALL, SCORES, meta, scoresMeta) {
     $('f-n').textContent = pts.length;
     const uns = DEFAULT.filter(m => !hasScore(m) && passes(m));
     $('unscored-note').hidden = !uns.length;
-    $('unscored-note').textContent = `Not ranked yet (no ${label}): ${uns.map(m => m.model).join(', ')}.`;
-    $('price-note').textContent = `Price: AI credits per 1M tokens at a ${state.inPct}/${100 - state.inPct} input/output mix, list price, no caching. `
-      + 'Hover a price for the split. Bar length follows a square-root scale so cheap models stay visible.';
+    $('unscored-note').textContent = `Pas encore classés (sans ${label}) : ${uns.map(m => m.model).join(', ')}.`;
+    $('price-note').textContent = `Prix : crédits IA par million de tokens, avec ${state.inPct} % en entrée et ${100 - state.inPct} % en sortie, hors cache. `
+      + 'Survolez un prix pour voir le détail. L’échelle permet de garder les modèles économiques visibles.';
 
     if (!pts.length) {
       $('picks').replaceChildren();
-      const p = el('p', 'empty', 'No scored model matches these filters. ');
-      const b = el('button', null, 'Clear filters');
+      const p = el('p', 'empty', "Aucun modèle évalué ne correspond à ces filtres. ");
+      const b = el('button', null, "Effacer les filtres");
       b.type = 'button';
       b.addEventListener('click', clearFilters);
       p.append(b);
@@ -494,14 +497,14 @@ function init(ALL, SCORES, meta, scoresMeta) {
 
     const front = frontier(pts), fs = new Set(front), top = front[front.length - 1];
     const bal = front.find(p => p.s >= 0.9 * top.s), bud = front.find(p => p.s >= 0.75 * top.s);
-    const roleOf = p => (p === top ? 'Best score' : p === bal ? 'Balanced pick' : p === bud ? 'Budget pick' : '');
+    const roleOf = p => (p === top ? "Meilleur score" : p === bal ? "Choix équilibré" : p === bud ? "Choix économique" : '');
     // The cheapest frontier model that scores at least as well: the one to try instead.
     const beater = p => front.filter(f => f.s >= p.s && f.price <= p.price).sort((a, b) => a.price - b.price)[0];
 
     // Picks: one card per model, in the order of the roles.
     const minPrice = Math.min(...pts.map(p => p.price));
     const seen = new Set();
-    const picks = [[top, 'Best overall'], [bal, 'Best value'], [bud, 'Cheapest that’s still good']].filter(([p]) => p && !seen.has(p) && seen.add(p));
+    const picks = [[top, "Meilleur score"], [bal, "Meilleur rapport qualité-prix"], [bud, "Le moins cher qui reste performant"]].filter(([p]) => p && !seen.has(p) && seen.add(p));
     $('picks').replaceChildren(...picks.map(([p, role]) => {
       const d = el('div', 'pick');
       d.style.setProperty('--c', colorOf(p.m.provider));
@@ -509,8 +512,8 @@ function init(ALL, SCORES, meta, scoresMeta) {
       k.innerHTML = CHECK;
       k.append(role);
       const why = p === top
-        ? `The highest score in view (${score(p.s)}). It costs ${ratio(p.price / minPrice)}× the cheapest model.`
-        : `${Math.round(p.s / top.s * 100)}% of the top score, for ${ratio(top.price / p.price)}× less than ${top.m.model}.`;
+        ? `Le meilleur score affiché (${score(p.s)}). Son coût est ${ratio(p.price / minPrice)} fois celui du modèle le moins cher.`
+        : `${Math.round(p.s / top.s * 100)} % du meilleur score, pour un coût ${ratio(top.price / p.price)} fois inférieur à celui de ${top.m.model}.`;
       d.append(k, el('span', 'nm', p.m.model), el('span', 'why', why));
       if (/promotion/i.test(p.m.note || '')) d.title = p.m.note;
       return d;
@@ -547,14 +550,14 @@ function init(ALL, SCORES, meta, scoresMeta) {
       };
       const sc = meter('score', p.s / sMax * 100, score(p.s));
       sc.querySelector('.v').prepend(el('span', 'sr', `${label} `));
-      const split = `In ${credits(p.m.input)} · Out ${credits(p.m.output)} credits per 1M`;
+      const split = `Entrée ${credits(p.m.input)} · Sortie ${credits(p.m.output)} crédits par million`;
       const pr = meter('price', Math.sqrt(p.price) / pMax * 100, credits(p.price));
       pr.title = split + (p.m.note ? '\n\n' + p.m.note : '');
-      pr.querySelector('.v').prepend(el('span', 'sr', 'Price '));
-      pr.append(el('span', 'sr', `credits per 1M tokens (${split})`));
+      pr.querySelector('.v').prepend(el('span', 'sr', 'Prix '));
+      pr.append(el('span', 'sr', `crédits par million de tokens (${split})`));
       const take = el('span', 'take');
-      take.append(el('span', 'a', on ? roleOf(p) : `Try ${d.m.model}`),
-        el('span', 'b', on ? '' : d.price === p.price ? 'same price' : `${ratio(p.price / d.price)}× cheaper`));
+      take.append(el('span', 'a', on ? roleOf(p) : `Essayez ${d.m.model}`),
+        el('span', 'b', on ? '' : d.price === p.price ? 'same price' : `${ratio(p.price / d.price)} fois moins cher`));
       r.append(m, sc, pr, take);
       return r;
     };
@@ -567,8 +570,8 @@ function init(ALL, SCORES, meta, scoresMeta) {
       return h;
     };
     const worth = sorted.filter(p => fs.has(p)), others = sorted.filter(p => !fs.has(p));
-    const parts = [head('worth', 'Worth it', 'Nothing cheaper scores as well', worth.length), ...worth.map(row)];
-    if (others.length) parts.push(el('div', 'group-sep'), head('others', 'Others', 'A cheaper model scores at least as well', others.length), ...others.map(row));
+    const parts = [head('worth', "Bon rapport qualité-prix", "Aucun modèle moins cher n’obtient un aussi bon score", worth.length), ...worth.map(row)];
+    if (others.length) parts.push(el('div', 'group-sep'), head('others', "Autres", 'Un modèle moins cher obtient un score au moins égal', others.length), ...others.map(row));
     $('card').replaceChildren(...parts);
     save();
   }
@@ -593,7 +596,7 @@ function init(ALL, SCORES, meta, scoresMeta) {
     const dark = isDark();
     document.documentElement.classList.toggle('is-dark', dark);
     $('theme-toggle').setAttribute('aria-pressed', String(dark));
-    $('theme-label').textContent = dark ? 'Light mode' : 'Dark mode';
+    $('theme-label').textContent = dark ? 'Mode clair' : 'Mode sombre';
   };
   $('theme-toggle').addEventListener('click', () => {
     const next = isDark() ? 'light' : 'dark';

@@ -35,6 +35,7 @@ jobs:
           else
             echo "Artificial Analysis key not configured; publishing existing scores."
           fi
+          node -e "require('fs').writeFileSync('data/refresh-meta.json', JSON.stringify({ pricesCheckedAt: new Date().toISOString(), scoresChecked: !!process.env.ARTIFICIAL_INTELLIGENCE_API_KEY }) + '\n')"
       - name: Prepare public files
         run: |
           mkdir public

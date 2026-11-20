@@ -4,27 +4,27 @@
 // short definition. Esc, a click outside, or leaving the button closes it.
 (() => {
   const GLOSSARY = {
-    token: ['Token', 'A chunk of text a model reads or writes, about ¾ of an English word. Prices are quoted in AI credits per million tokens.'],
-    input: ['Input tokens', 'Everything sent to the model: your prompt, open files, conversation history. Coding agents send a lot of these.'],
-    output: ['Output tokens', 'What the model writes back: code, answers, reasoning. Usually 3–8× the price of input.'],
-    credit: ['AI credit', 'GitHub Copilot bills models in AI credits. 1 credit = $0.01, so 1,000 credits = $10.'],
-    mix: ['Input / output mix', 'Your share of input vs output tokens. Coding agents are about 90% input: they re-read files and history at every step and write comparatively little.'],
-    blended: ['Blended price', 'One price per million tokens, in AI credits, weighting the input and output prices by the mix: r × input + (1 − r) × output.'],
-    long: ['Long context', 'Some models charge a higher rate once a single prompt passes a size threshold (e.g. 272K tokens). Drawn as outlined bars.'],
-    class: ['Class', 'GitHub’s own capability tiers: Lightweight for quick tasks, Versatile for everyday work, Powerful for the hardest problems.'],
-    multCheap: ['×N', 'How many times the cheapest model in view: ×10 means ten times the price.'],
-    moreTokens: ['N× more', 'Tokens compared with the most expensive model in view, which buys the fewest: 10× more means ten times as many tokens for the same budget. More tokens is not the same as better work: see page 1.'],
-    workday: ['Working day', 'The monthly budget split over 22 working days (a 30-day month, 5 days a week), to show what one day of work can use.'],
-    maxDay: ['Max requests a day', 'The most agent requests you can send every working day and still have credits on the last day of the month: monthly budget ÷ 22 working days ÷ credits per request. Below your pace, the model runs out early.'],
-    runwayUse: ['Credits at this pace', 'Credits per request (50,000 tokens at the mix) × requests a day × 22 working days. Cheap models use only a small share of the budget; the others show the day the credits run out.'],
-    request: ['Agent request', 'Counted as 50,000 tokens: one agent step that sends files and history and gets an answer. Real sizes vary widely.'],
-    index: ['Artificial Analysis index', 'A composite benchmark score: higher is better. Coding Index covers coding tasks; Intelligence Index adds reasoning, knowledge and maths.'],
-    frontier: ['Pareto frontier', 'Models that no cheaper model beats on the score. A model below the line has a cheaper alternative that scores at least as well.'],
-    cached: ['Cached input', 'Input the provider has seen recently (the same files and history at the start of the prompt) and reuses, billed at a fraction of the input price. Agents resend a lot of the same context, so much of their input can be cached.'],
-    cachewrite: ['Cache write', 'What some providers charge to store a prompt prefix the first time, so later requests can read it at the cached price. Empty when GitHub lists no such charge.'],
-    perdollar: ['Coding points per 100 credits', 'Coding Index divided by the blended price per million tokens, in hundreds of credits: how much benchmark score 100 credits ($1) buy. Higher is better value, not a better model.'],
-    log: ['Log scale', 'Each step right multiplies the price (×2, ×10) instead of adding to it, so cheap and pricey models fit on one axis.'],
-    quality: ['Quality', 'A model\u2019s benchmark score (Artificial Analysis) next to the best Copilot model on the same benchmark: 5 dots means within 5% of the best, 1 dot means under 60%. Benchmarks are a guide, not a measure of your own tasks.'],
+    token: ['Token', 'Un fragment de texte lu ou produit par un modèle. Les prix sont indiqués en crédits IA par million de tokens.'],
+    input: ['Tokens en entrée', 'Tout ce qui est envoyé au modèle : consigne, fichiers ouverts et historique de conversation.'],
+    output: ['Tokens en sortie', 'Ce que le modèle produit : code, réponses et raisonnement.'],
+    credit: ['Crédit IA', 'GitHub Copilot facture les modèles en crédits IA. Un crédit vaut 0,01 dollar.'],
+    mix: ['Répartition entrée / sortie', 'La proportion de tokens envoyés et produits. Les agents de développement relisent souvent les fichiers et l’historique.'],
+    blended: ['Prix moyen', 'Prix par million de tokens, pondéré selon la répartition entre entrée et sortie.'],
+    long: ['Contexte long', 'Certains modèles coûtent plus cher lorsque la taille de la requête dépasse un seuil.'],
+    class: ['Catégorie', 'Catégories de GitHub selon les capacités : léger, polyvalent et puissant.'],
+    multCheap: ['×N', 'Rapport au modèle le moins cher affiché : ×10 signifie un prix dix fois plus élevé.'],
+    moreTokens: ['N fois plus', 'Nombre de tokens comparé au modèle le plus cher pour un même budget.'],
+    workday: ['Jour ouvré', 'Le budget mensuel est réparti sur 22 jours ouvrés.'],
+    maxDay: ['Maximum de requêtes par jour', 'Nombre maximal de requêtes par jour ouvré permettant de tenir tout le mois.'],
+    runwayUse: ['Crédits à ce rythme', 'Coût par requête multiplié par le nombre de requêtes quotidiennes et 22 jours ouvrés.'],
+    request: ['Requête agent', 'Une étape d’agent estimée à 50 000 tokens, comprenant les fichiers, l’historique et la réponse.'],
+    index: ['Indice Artificial Analysis', 'Score composite : plus il est élevé, mieux c’est. Coding mesure le code ; Intelligence couvre aussi le raisonnement et les connaissances.'],
+    frontier: ['Frontière de Pareto', 'Modèles qu’aucun modèle moins cher ne surpasse en matière de score.'],
+    cached: ['Entrée en cache', 'Données d’entrée réutilisées par le fournisseur et facturées à un tarif réduit.'],
+    cachewrite: ['Écriture en cache', 'Prix éventuellement facturé pour stocker une première fois le début d’une requête.'],
+    perdollar: ['Points de code pour 100 crédits', 'Score Coding rapporté au prix moyen : plus il est élevé, meilleur est le rapport qualité-prix.'],
+    log: ['Échelle logarithmique', 'Chaque graduation multiplie le prix au lieu de lui ajouter une valeur fixe.'],
+    quality: ['Qualité', 'Score du modèle comparé au meilleur modèle Copilot sur la même évaluation.'],
   };
 
   const css = `
@@ -85,7 +85,7 @@
     if (!entry) return;
     btn.type = 'button';
     btn.textContent = '?';
-    btn.setAttribute('aria-label', 'What is ' + entry[0] + '?');
+    btn.setAttribute('aria-label', 'Définition : ' + entry[0]);
     btn.setAttribute('aria-expanded', 'false');
     btn.setAttribute('aria-describedby', 'gl-pop');
   }

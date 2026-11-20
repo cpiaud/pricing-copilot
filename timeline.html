@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -16,7 +16,7 @@
 <style>
 /* Same design language as tokens.html (tokens, nav, filters, tooltip, table):
    one dot per model at its release date, blended price or an Artificial Analysis index on y. */
-/* Timeline: threshold, faded and unscored dots */
+/* Historique: threshold, faded and unscored dots */
 .chart .thr-line { stroke: var(--ink-3); stroke-width: 1; stroke-dasharray: 4 4; }
 .chart .thr-lbl { font: 500 11px var(--font-mono); fill: var(--ink-3); }
 .chart .pt.below .dot { opacity: .4; }
@@ -339,44 +339,47 @@ footer a { color: var(--ink-2); text-underline-offset: 3px; text-decoration-colo
 <div class="app">
   <div class="masthead">
     <nav class="site-nav" aria-label="Pages">
-      <a class="brand" href="./"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.01 8.01 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg><span class="b-t"><span class="b-name">Copilot pricing</span><span class="q">Which model should I use?</span></span></a>
-      <button type="button" class="steps-btn" aria-expanded="false" aria-controls="steps"><span class="n">4</span>Timeline<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
+      <a class="brand" href="./"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.01 8.01 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg><span class="b-t"><span class="b-name">Copilot pricing</span><span class="q">Quel modèle choisir ?</span></span></a>
+      <button type="button" class="steps-btn" aria-expanded="false" aria-controls="steps"><span class="n">4</span>Historique<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
       <ol class="steps" id="steps">
-        <li><a href="cost.html"><span class="n">1</span><span class="t">Cost &amp; value</span><span class="q">Which model is worth its price?</span></a></li>
-        <li><a href="tokens.html"><span class="n">2</span><span class="t">Budget</span><span class="q">What does my budget buy?</span></a></li>
-        <li><a href="compare.html"><span class="n">3</span><span class="t">Compare</span><span class="q">How do they compare?</span></a></li>
-        <li><a href="timeline.html" aria-current="page"><span class="n">4</span><span class="t">Timeline</span><span class="q">Is it getting cheaper?</span></a></li>
+        <li><a href="cost.html"><span class="n">1</span><span class="t">Coût et valeur</span><span class="q">Quel modèle vaut son prix ?</span></a></li>
+        <li><a href="tokens.html"><span class="n">2</span><span class="t">Budget</span><span class="q">Que permet mon budget ?</span></a></li>
+        <li><a href="compare.html"><span class="n">3</span><span class="t">Comparer</span><span class="q">Comment se comparent-ils ?</span></a></li>
+        <li><a href="timeline.html" aria-current="page"><span class="n">4</span><span class="t">Historique</span><span class="q">Les prix baissent-ils ?</span></a></li>
       </ol>
     </nav>
+    <div class="header-actions">
     <button type="button" class="theme-btn" id="theme-toggle" aria-pressed="false">
       <svg class="moon" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 9.5A5.5 5.5 0 0 1 6.5 2.5a5.5 5.5 0 1 0 7 7Z"/></svg>
       <svg class="sun" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3"/><path d="M8 1.5v1.5M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1 1M11.6 11.6l1 1M3.4 12.6l1-1M11.6 4.4l1-1"/></svg>
-      <span id="theme-label">Dark mode</span>
+      <span id="theme-label">Mode sombre</span>
     </button>
+    <span id="refresh-date" class="refresh-date" aria-live="polite">Actualisation…</span>
+    </div>
   </div>
 
   <header class="intro">
-    <h1 id="h1">How fast is <span id="h-metric">coding ability</span> getting cheaper?</h1>
-    <p class="lede" id="lede-price">Each dot is a Copilot model at its release date, by blended <span class="gl-t">price<button class="gl" data-gl="blended"></button></span>. Faded: below <span class="t-min">70</span> on the <span class="m-label">Coding Index</span><button class="gl" data-gl="index"></button>.</p>
-    <p class="lede" id="lede-score" hidden>Each dot is a Copilot model at its release date, by its <span class="m-label">Coding Index</span><button class="gl" data-gl="index"></button>.</p>
+    <h1 id="h1">À quelle vitesse <span id="h-metric">la capacité de programmation</span> devient-elle moins chère ?</h1>
+    <p class="lede" id="lede-price">Chaque point représente un modèle Copilot à sa date de sortie, selon son <span class="gl-t">price<button class="gl" data-gl="blended"></button></span>. En transparence : sous <span class="t-min">70</span> sur l’indice <span class="m-label">Coding Index</span><button class="gl" data-gl="index"></button>.</p>
+    <p class="lede" id="lede-score" hidden>Chaque point représente un modèle Copilot à sa date de sortie, selon son <span class="m-label">Coding Index</span><button class="gl" data-gl="index"></button>.</p>
   </header>
 
-  <div class="fbar" role="group" aria-label="Assumptions and filters">
+  <div class="fbar" role="group" aria-label="Hypothèses et filtres">
     <div class="fb-item">
-      <button type="button" class="fb-btn" aria-expanded="false" aria-controls="pop-min" data-sum="min"><span class="fb-k">Threshold</span><span class="fb-v">≥ 70</span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
+      <button type="button" class="fb-btn" aria-expanded="false" aria-controls="pop-min" data-sum="min"><span class="fb-k">Seuil</span><span class="fb-v">≥ 70</span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
       <div class="fb-pop" id="pop-min" hidden>
-        <div class="fb-head"><label for="min">Score threshold</label></div>
+        <div class="fb-head"><label for="min">Seuil de score</label></div>
         <div class="fb-ctrl">
           <span class="thr"><span>Score ≥</span><input type="number" id="min" min="0" max="100" step="5" value="70" inputmode="numeric"></span>
         </div>
-        <p class="fb-hint" id="min-hint">Models scoring at least this count; the others are faded</p>
-        <button type="button" class="link-btn fb-reset" id="reset-min" hidden>Back to 70</button>
+        <p class="fb-hint" id="min-hint">Les modèles sous ce seuil apparaissent en transparence</p>
+        <button type="button" class="link-btn fb-reset" id="reset-min" hidden>Revenir à 70</button>
       </div>
     </div>
     <div class="fb-item">
       <button type="button" class="fb-btn" aria-expanded="false" aria-controls="pop-mix" data-sum="mix"><span class="fb-k">Mix</span><span class="fb-v">90 / 10</span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
       <div class="fb-pop" id="pop-mix" hidden>
-        <div class="fb-head"><span class="gl-t"><label for="mix">Input / output mix</label><button class="gl" data-gl="mix"></button></span></div>
+        <div class="fb-head"><span class="gl-t"><label for="mix">Répartition entrée / sortie</label><button class="gl" data-gl="mix"></button></span></div>
         <div class="fb-ctrl mix">
           <input type="range" id="mix" min="0" max="100" step="5" value="90" aria-describedby="mix-out">
           <span class="mix-out" id="mix-out" aria-live="polite">
@@ -384,16 +387,16 @@ footer a { color: var(--ink-2); text-underline-offset: 3px; text-decoration-colo
             <span><b id="mix-o">10%</b> output</span>
           </span>
         </div>
-        <p class="fb-hint">Coding agents re-read files and history at every step, so most of what they use is input.</p>
-        <button type="button" class="link-btn fb-reset" id="reset-mix" hidden>Back to 90/10</button>
+        <p class="fb-hint">Les agents de développement relisent les fichiers et l’historique à chaque étape : la plupart des tokens sont donc en entrée.</p>
+        <button type="button" class="link-btn fb-reset" id="reset-mix" hidden>Revenir à 90/10</button>
       </div>
     </div>
     <span class="fb-sep" aria-hidden="true"></span>
     <div class="fb-item">
-      <button type="button" class="fb-btn" aria-expanded="false" aria-controls="pop-provider" data-sum="chips:providers"><span class="fb-k">Provider</span><span class="fb-v">All</span><span class="sw-row" aria-hidden="true"></span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
+      <button type="button" class="fb-btn" aria-expanded="false" aria-controls="pop-provider" data-sum="chips:providers"><span class="fb-k">Fournisseur</span><span class="fb-v">Tous</span><span class="sw-row" aria-hidden="true"></span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
       <div class="fb-pop" id="pop-provider" hidden>
-        <div class="fb-head"><span id="fl-provider">Provider</span>
-          <span class="f-bulk"><button type="button" class="link-btn" id="all">All</button> · <button type="button" class="link-btn" id="none">None</button></span>
+        <div class="fb-head"><span id="fl-provider">Fournisseur</span>
+          <span class="f-bulk"><button type="button" class="link-btn" id="all">Tous</button> · <button type="button" class="link-btn" id="none">Aucun</button></span>
         </div>
         <div class="fb-ctrl" role="group" aria-labelledby="fl-provider">
           <div class="chips" id="providers"></div>
@@ -401,28 +404,28 @@ footer a { color: var(--ink-2); text-underline-offset: 3px; text-decoration-colo
       </div>
     </div>
     <div class="fb-item">
-      <button type="button" class="fb-btn" aria-expanded="false" aria-controls="pop-class" data-sum="chips:categories"><span class="fb-k">Class</span><span class="fb-v">All</span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
+      <button type="button" class="fb-btn" aria-expanded="false" aria-controls="pop-class" data-sum="chips:categories"><span class="fb-k">Catégorie</span><span class="fb-v">Tous</span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5 6 7.5 9 4.5"/></svg></button>
       <div class="fb-pop" id="pop-class" hidden>
-        <div class="fb-head"><span class="gl-t"><span id="fl-class">Class</span><button class="gl" data-gl="class"></button></span></div>
+        <div class="fb-head"><span class="gl-t"><span id="fl-class">Catégorie</span><button class="gl" data-gl="class"></button></span></div>
         <div class="fb-ctrl" role="group" aria-labelledby="fl-class">
           <div class="chips" id="categories"></div>
         </div>
-        <p class="fb-hint">GitHub’s own capability tiers: Lightweight, Versatile, Powerful.</p>
+        <p class="fb-hint">Catégories GitHub : léger, polyvalent et puissant.</p>
       </div>
     </div>
-    <span class="fb-count" aria-live="polite"><span id="f-count"></span><button type="button" class="link-btn" id="reset" hidden>Reset filters</button></span>
+    <span class="fb-count" aria-live="polite"><span id="f-count"></span><button type="button" class="link-btn" id="reset" hidden>Réinitialiser les filtres</button></span>
   </div>
 
   <main class="content">
     <p class="takeaway" id="takeaway" aria-live="polite"></p>
     <div class="toolbar" role="group" aria-label="Chart">
-      <div class="tb-group"><span class="tb-k"><span id="fl-view">Show</span></span><div class="segmented" role="group" aria-labelledby="fl-view"><button type="button" data-view="price" aria-pressed="true">Price</button><button type="button" data-view="score" aria-pressed="false">Score</button></div></div>
-      <div class="tb-group"><span class="tb-k"><span id="fl-metric">Score</span><button class="gl" data-gl="index"></button></span><div class="segmented" role="group" aria-labelledby="fl-metric"><button type="button" data-metric="coding" aria-pressed="true">Coding</button><button type="button" data-metric="intelligence" aria-pressed="false">Intelligence</button></div></div>
+      <div class="tb-group"><span class="tb-k"><span id="fl-view">Afficher</span></span><div class="segmented" role="group" aria-labelledby="fl-view"><button type="button" data-view="price" aria-pressed="true">Prix</button><button type="button" data-view="score" aria-pressed="false">Score</button></div></div>
+      <div class="tb-group"><span class="tb-k"><span id="fl-metric">Score</span><button class="gl" data-gl="index"></button></span><div class="segmented" role="group" aria-labelledby="fl-metric"><button type="button" data-metric="coding" aria-pressed="true">Code</button><button type="button" data-metric="intelligence" aria-pressed="false">Intelligence</button></div></div>
     </div>
     <div class="summary" id="legend"></div>
 
-    <section class="chart" id="chart" aria-label="Copilot models by release date">
-      <svg id="svg" role="img" aria-labelledby="svg-title"><title id="svg-title">Copilot models by release date</title></svg>
+    <section class="chart" id="chart" aria-label="Modèles Copilot par date de sortie">
+      <svg id="svg" role="img" aria-labelledby="svg-title"><title id="svg-title">Modèles Copilot par date de sortie</title></svg>
       <div class="tip" id="tip" hidden></div>
     </section>
     <section class="unscored" id="unscored" aria-labelledby="unscored-title" hidden>
@@ -432,31 +435,27 @@ footer a { color: var(--ink-2); text-underline-offset: 3px; text-decoration-colo
     </section>
 
     <details id="explain">
-      <summary>How is this calculated?</summary>
+      <summary>Comment est-ce calculé ?</summary>
       <div class="explain">
-        <p><b>Date.</b> The day the provider released the model (<code>data/release-dates.csv</code>), not the day it reached Copilot.</p>
-        <p><b>Price.</b> GitHub’s list price per million input and output tokens, blended by the mix: <code>r × input + (1 − r) × output</code>, with <code>r</code> = 90% by default. Default tier only: long-context rates and caching are left out. It is <b>today’s</b> price for every model: we don’t keep a price history, so a model whose price changed since launch is shown at its current price.</p>
-        <p><b>Score.</b> An <a href="https://artificialanalysis.ai/" target="_blank" rel="noopener">Artificial Analysis</a> index, picked with the Score switch: <b>Coding</b> (default) or <b>Intelligence</b>, the broader one, often published sooner for new models. Models without the selected index can’t pass the threshold: they are hollow on the Price view and listed under the chart on the Score view.</p>
-        <p><b>Threshold.</b> On the Price view, models scoring below it are faded. The sentence above the chart compares the cheapest model reaching it today with the first one that did.</p>
-        <ul>
-          <li>Copilot drops older models, so the timeline only starts with the oldest model it still offers: the trend over a longer period isn’t visible here.</li>
-          <li>Scores measure the model, not Copilot’s harness around it, and say nothing about how many tokens a task takes.</li>
-        </ul>
+        <p><b>Date.</b> Date de sortie du modèle chez son fournisseur, et non date de son arrivée dans Copilot.</p>
+        <p><b>Prix.</b> Prix catalogue actuel par million de tokens, pondéré selon la répartition choisie. Les prix passés et le cache ne sont pas pris en compte.</p>
+        <p><b>Score.</b> Indice de programmation ou d’intelligence fourni par <a href="https://artificialanalysis.ai/">Artificial Analysis</a>.</p>
+        <p><b>Seuil.</b> Les modèles sous le seuil sont affichés en transparence. Le graphique compare les modèles encore disponibles dans Copilot.</p>
       </div>
     </details>
 
     <details id="details">
-      <summary>Show as a table</summary>
+      <summary>Afficher en tableau</summary>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Model</th><th>Provider</th><th>Class</th><th>Released</th><th class="num">Blended credits / 1M</th><th class="num m-label">Coding Index</th></tr></thead>
+          <thead><tr><th>Modèle</th><th>Fournisseur</th><th>Catégorie</th><th>Date de sortie</th><th class="num">Crédits moyens / 1 M</th><th class="num m-label">Coding Index</th></tr></thead>
           <tbody id="tbody"></tbody>
         </table>
       </div>
     </details>
 
     <footer>
-      <span>Prices: <a href="https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing" target="_blank" rel="noopener">Models and pricing for GitHub Copilot</a></span>
+      <span>Prix : <a href="https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing" target="_blank" rel="noopener">Modèles et tarifs GitHub Copilot</a></span>
       <span>Scores: <a href="https://artificialanalysis.ai/" target="_blank" rel="noopener">Artificial Analysis</a></span>
       <span id="updated"></span>
     </footer>
@@ -471,8 +470,8 @@ const NUMERIC = ['input', 'cachedInput', 'cacheWrite', 'output', 'intelligence',
 // Score switch: column in data/scores.csv → labels, and the default threshold (a score most recent
 // mid-priced models reach).
 const METRICS = {
-  coding: { label: 'Coding Index', headline: 'coding ability', short: 'coding', min: 70 },
-  intelligence: { label: 'Intelligence Index', headline: 'intelligence', short: 'intelligence', min: 40 },
+  coding: { label: 'Coding Index', headline: "la capacité de programmation", short: 'coding', min: 70 },
+  intelligence: { label: 'Intelligence Index', headline: 'l’intelligence', short: 'intelligence', min: 40 },
 };
 const VIEWS = ['price', 'score'];
 
@@ -511,7 +510,7 @@ Promise.all([text('data/models.csv'), text('data/scores.csv'), text('data/releas
     console.error(err);
     const p = document.createElement('p');
     p.className = 'empty';
-    p.textContent = 'Couldn’t load the data files. Serve the page over HTTP (python3 -m http.server).';
+    p.textContent = "Impossible de charger les données. Servez le site en HTTP (python3 -m http.server).";
     document.getElementById('chart').replaceChildren(p);
   });
 
@@ -546,10 +545,10 @@ function init(ALL, SCORES, DATES, RELEASE_MAP, meta, scoresMeta) {
   const presentCats = new Set(DATED.map(m => m.category));
   const CATEGORIES = [...CAT_ORDER.filter(c => presentCats.has(c)), ...[...presentCats].filter(c => !CAT_ORDER.includes(c))];
 
-  const fmtDate = s => new Date(s + 'T00:00:00').toLocaleDateString('en-US', { dateStyle: 'long' });
-  const fmtMonth = t => new Date(t).toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' });
-  $('updated').textContent = [meta.updated && 'Prices updated ' + fmtDate(meta.updated),
-    scoresMeta.updated && 'scores updated ' + fmtDate(scoresMeta.updated)].filter(Boolean).join(', ');
+  const fmtDate = s => new Date(s + 'T00:00:00').toLocaleDateString('fr-FR', { dateStyle: 'long' });
+  const fmtMonth = t => new Date(t).toLocaleDateString('fr-FR', { month: 'short', year: 'numeric', timeZone: 'UTC' });
+  $('updated').textContent = [meta.updated && "Prix modifiés le " + fmtDate(meta.updated),
+    scoresMeta.updated && "scores modifiés le " + fmtDate(scoresMeta.updated)].filter(Boolean).join(', ');
   // The right edge of the chart: the step lines run up to the latest data.
   const NOW = Math.max(...DATED.map(m => m.t), meta.updated ? toTime(meta.updated) : 0);
 
@@ -561,7 +560,7 @@ function init(ALL, SCORES, DATES, RELEASE_MAP, meta, scoresMeta) {
   const DEFAULT_IN = 90;
   const STORE = 'copilot-timeline-view';
   const DEFAULT_VIEW = 'price';
-  const DEFAULT_METRIC = 'coding';
+  const DEFAULT_METRIC = DATED.some(m => m.score.coding != null) ? 'coding' : 'intelligence';
   const defaultMins = () => Object.fromEntries(Object.entries(METRICS).map(([k, v]) => [k, v.min]));
   const state = { view: DEFAULT_VIEW, metric: DEFAULT_METRIC, min: defaultMins(), inPct: DEFAULT_IN,
     active: new Set(PROVIDERS.map(p => p.name)), cats: new Set(CATEGORIES) };
@@ -659,7 +658,7 @@ function init(ALL, SCORES, DATES, RELEASE_MAP, meta, scoresMeta) {
 
   const blended = m => { const r = state.inPct / 100; return r * m.input + (1 - r) * m.output; };
 
-  // For the sentence: by release date (cheapest first on the same day), keep each model that reaches the
+  // For the sentence: by release date (cheapest first sur l’indice same day), keep each model that reaches the
   // threshold for less than every earlier one that did.
   function cheapestSteps(list, min) {
     const out = [];
@@ -668,7 +667,7 @@ function init(ALL, SCORES, DATES, RELEASE_MAP, meta, scoresMeta) {
       .forEach(p => { if (p.price < best) { out.push(p); best = p.price; } });
     return out;
   }
-  // For the sentence: by release date (best first on the same day), keep each new best score.
+  // For the sentence: by release date (best first sur l’indice same day), keep each new best score.
   function bestSteps(list) {
     const out = [];
     let best = -Infinity;
@@ -714,10 +713,10 @@ function init(ALL, SCORES, DATES, RELEASE_MAP, meta, scoresMeta) {
     $('reset-mix').hidden = state.inPct === DEFAULT_IN;
     if (document.activeElement !== $('min')) $('min').value = min;
     $('reset-min').hidden = min === METRICS[k].min;
-    $('reset-min').textContent = `Back to ${METRICS[k].min}`;
+    $('reset-min').textContent = `Revenir à ${METRICS[k].min}`;
     $('min-hint').textContent = byPrice
-      ? 'Models scoring below this are faded'
-      : 'Dashed line on the chart';
+      ? "Les modèles sous ce seuil apparaissent en transparence"
+      : "Ligne pointillée sur le graphique";
     document.querySelectorAll('[data-view]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.view === state.view)));
     document.querySelectorAll('[data-metric]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.metric === k)));
     document.querySelectorAll('.m-label').forEach(n => { n.textContent = label; });
@@ -725,10 +724,10 @@ function init(ALL, SCORES, DATES, RELEASE_MAP, meta, scoresMeta) {
     $('lede-price').hidden = !byPrice;
     $('lede-score').hidden = byPrice;
     $('h1').replaceChildren(...(byPrice
-      ? ['How fast is ', el('span', null, METRICS[k].headline), ' getting cheaper?']
-      : ['How fast are models getting better at ', el('span', null, k === 'coding' ? 'coding' : 'everything'), '?']));
+      ? ['À quelle vitesse ', el('span', null, METRICS[k].headline), ' devient-elle moins chère ?']
+      : ['À quelle vitesse les modèles progressent-ils en ', el('span', null, k === 'coding' ? 'programmation' : 'intelligence'), '?']));
     $('svg-title').textContent = byPrice
-      ? `Copilot models by release date and blended price, with the cheapest model scoring at least ${min} on the ${label} over time`
+      ? `Copilot models by release date and blended price, with the cheapest model scoring at least ${min} sur l’indice ${label} over time`
       : `Copilot models by release date and ${label}, with the best score over time`;
 
     const shown = m => byPrice || m.score[k] != null;
@@ -740,8 +739,8 @@ function init(ALL, SCORES, DATES, RELEASE_MAP, meta, scoresMeta) {
     chips.forEach((c, name) => syncChip(c, state.active.has(name), DATED.filter(m => shown(m) && m.provider === name && passes(m, 'provider')).length));
     catChips.forEach((c, name) => syncChip(c, state.cats.has(name), DATED.filter(m => shown(m) && m.category === name && passes(m, 'cat')).length));
     const pool = DATED.filter(shown);
-    $('f-count').replaceChildren('Showing ', el('b', null, String(pool.filter(m => passes(m)).length)),
-      ` of ${pool.length} ${byPrice ? 'dated' : 'scored'} models`);
+    $('f-count').replaceChildren('Affichage : ', el('b', null, String(pool.filter(m => passes(m)).length)),
+      ` sur ${pool.length} modèles`);
     $('reset').hidden = !isFiltered();
 
     const inView = DATED.filter(m => passes(m)).map(m => ({ m, t: m.t, price: blended(m), s: m.score[k] ?? null,
@@ -757,9 +756,9 @@ function init(ALL, SCORES, DATES, RELEASE_MAP, meta, scoresMeta) {
     const missing = [...(byPrice ? [] : unscored.map(p => ({ m: p.m, why: 'not scored yet' }))),
       ...UNDATED.filter(m => passes(m)).map(m => ({ m, why: 'no release date' }))];
     $('unscored').hidden = !missing.length;
-    $('unscored-title').textContent = `Not on the chart · ${missing.length}`;
+    $('unscored-title').textContent = `Absents du graphique · ${missing.length}`;
     $('unscored-text').textContent = byPrice
-      ? 'These Copilot models have no release date in data/release-dates.csv yet.'
+      ? 'La date de sortie de ces modèles Copilot n’est pas encore renseignée.'
       : `These Copilot models have no ${label} on Artificial Analysis yet${missing.some(x => x.why === 'no release date') ? ', or no release date' : ''}, so they are not plotted.`;
     $('unscored-list').replaceChildren(...missing.map(({ m, why }) => {
       const li = el('li');
@@ -786,25 +785,25 @@ function init(ALL, SCORES, DATES, RELEASE_MAP, meta, scoresMeta) {
     const key = (cls, text) => { const s = el('span', 'legend-key'); s.append(el('span', cls), text); return s; };
     $('legend').replaceChildren(...(byPrice ? [
       key('key-dot', `${min}+`),
-      key('key-dot below', `Below ${min}`),
-      key('key-dot hollow', 'Not scored yet'),
+      key('key-dot below', `Sous ${min}`),
+      key('key-dot hollow', "Pas encore évalué"),
     ] : [
-      key('key-thr', `Threshold ${min}`),
+      key('key-thr', `Seuil ${min}`),
     ]));
   }
 
   // One bold headline, then a muted footnote for what it leaves out.
   function renderTakeaway(byPrice, unscored, min, k) {
-    if (!points.length) { $('takeaway').textContent = 'No models in view.'; return; }
-    const what = `${min}+ on ${METRICS[k].short}`;
+    if (!points.length) { $('takeaway').textContent = "Aucun modèle affiché."; return; }
+    const what = `${min}+ en ${METRICS[k].short}`;
     const parts = [];
     const a = steps[0], b = steps[steps.length - 1];
     if (byPrice) {
       const n = steps.length > 1 ? Math.round((b.t - a.t) / (DAY * 30.44)) : 0;
-      if (!steps.length) parts.push(`No model scores ${what}. Lower the threshold.`);
-      else if (steps.length === 1) parts.push(el('b', null, b.m.model), ` is the cheapest model scoring ${what} since ${fmtMonth(b.t)}: ${credits(b.price)} credits per 1M tokens.`);
-      else parts.push(el('b', null, `${ratio(a.price / b.price)}× cheaper${n >= 1 ? ` in ${n} month${n > 1 ? 's' : ''}` : ''}.`),
-        ` Scoring ${what} cost ${credits(a.price)} credits per 1M tokens in ${fmtMonth(a.t)}, ${credits(b.price)} today (${b.m.model}).`);
+      if (!steps.length) parts.push(`Aucun modèle n’atteint ${what}. Baissez le seuil.`);
+      else if (steps.length === 1) parts.push(el('b', null, b.m.model), ` is the cheapest model scoring ${what} since ${fmtMonth(b.t)}: ${credits(b.price)} credits par million de tokens.`);
+      else parts.push(el('b', null, `${ratio(a.price / b.price)} fois moins cher${n >= 1 ? ` en ${n} mois` : ''}.`),
+        ` Atteindre ${what} coûtait ${credits(a.price)} crédits par million de tokens en ${fmtMonth(a.t)}, contre ${credits(b.price)} aujourd’hui (${b.m.model}).`);
     } else {
       parts.push(el('b', null, `Best ${METRICS[k].short} score: ${steps.length > 1 ? score(a.s) + ' → ' : ''}${score(b.s)}`),
         steps.length > 1 ? ` from ${fmtMonth(a.t)} to ${fmtMonth(b.t)} (${b.m.model}).` : ` (${b.m.model}, ${fmtMonth(b.t)}).`);
@@ -812,7 +811,7 @@ function init(ALL, SCORES, DATES, RELEASE_MAP, meta, scoresMeta) {
     // A step that rests on a temporary price, and models without a score.
     const notes = [];
     if (byPrice && steps.some(p => /promotion/i.test(p.m.note || ''))) notes.push('promotional price');
-    if (unscored.length) notes.push(`${unscored.length} model${unscored.length > 1 ? 's' : ''} not scored yet`);
+    if (unscored.length) notes.push(`${unscored.length} modèle${unscored.length > 1 ? 's' : ''} sans score`);
     if (notes.length) { const t = notes.join(' · '); parts.push(' ', el('span', 'muted', t[0].toUpperCase() + t.slice(1) + '.')); }
     $('takeaway').replaceChildren(...parts);
   }
@@ -823,11 +822,11 @@ function init(ALL, SCORES, DATES, RELEASE_MAP, meta, scoresMeta) {
     $('chart').querySelector('.empty')?.remove();
     if (!points.length) {
       svg.setAttribute('height', 0);
-      const btn = el('button', 'link-btn', 'Reset filters');
+      const btn = el('button', 'link-btn', "Réinitialiser les filtres");
       btn.type = 'button';
       btn.addEventListener('click', resetFilters);
       const p = el('p', 'empty');
-      p.append('No model matches these filters. ', btn);
+      p.append('Aucun modèle ne correspond à ces filtres. ', btn);
       $('chart').append(p);
       return;
     }
@@ -870,7 +869,7 @@ function init(ALL, SCORES, DATES, RELEASE_MAP, meta, scoresMeta) {
     const ticks = sv('g', { 'aria-hidden': 'true' });
     monthTicks(tlo, thi, narrow ? 4 : 9).forEach((t, i) => {
       const d = new Date(t);
-      const mon = d.toLocaleDateString('en-US', { month: 'short', timeZone: 'UTC' });
+      const mon = d.toLocaleDateString('fr-FR', { month: 'short', timeZone: 'UTC' });
       grid.append(sv('line', { x1: x(t), x2: x(t), y1: M.top, y2: M.top + ih }));
       ticks.append(sv('text', { class: 'tick', x: x(t), y: M.top + ih + 18, 'text-anchor': 'middle' },
         d.getUTCMonth() === 0 || i === 0 ? `${mon} ${d.getUTCFullYear()}` : mon));
@@ -879,13 +878,13 @@ function init(ALL, SCORES, DATES, RELEASE_MAP, meta, scoresMeta) {
       grid.append(sv('line', { x1: M.left, x2: M.left + iw, y1: y(t), y2: y(t) }));
       ticks.append(sv('text', { class: 'tick', x: M.left - 10, y: y(t) + 4, 'text-anchor': 'end' }, byPrice ? credits(t) : String(t)));
     });
-    ticks.append(sv('text', { class: 'ax-title', x: M.left + iw / 2, y: H - 10, 'text-anchor': 'middle' }, 'Release date →'));
+    ticks.append(sv('text', { class: 'ax-title', x: M.left + iw / 2, y: H - 10, 'text-anchor': 'middle' }, "Date de sortie →"));
     ticks.append(sv('text', { class: 'ax-title', transform: `translate(14 ${M.top + ih / 2}) rotate(-90)`, 'text-anchor': 'middle' }, byPrice
-      ? (narrow ? 'Credits per 1M tokens' : `Blended credits per 1M tokens, ${state.inPct}/${100 - state.inPct} input/output · pricier →`)
+      ? (narrow ? 'Credits par million de tokens' : `Crédits moyens par million de tokens, ${state.inPct}/${100 - state.inPct} entrée/sortie · plus cher →`)
       : `${label} · better →`));
     svg.append(grid, ticks);
 
-    // Threshold (Score view): the score a model needs to count on the Price view.
+    // Threshold (Score view): the score a model needs to count sur l’indice Price view.
     if (!byPrice && min >= ylo && min <= yhi) {
       svg.append(sv('line', { class: 'thr-line', x1: M.left, x2: M.left + iw, y1: y(min), y2: y(min), 'aria-hidden': 'true' }),
         sv('text', { class: 'thr-lbl', x: M.left + 6, y: y(min) - 6, 'aria-hidden': 'true' }, `≥ ${min}`));
@@ -898,7 +897,7 @@ function init(ALL, SCORES, DATES, RELEASE_MAP, meta, scoresMeta) {
     [...points].sort((a, b) => rank(a) - rank(b)).forEach(p => {
       p.cx = x(p.t); p.cy = yOf(p);
       const cls = ['pt', p.s == null && 'unscored', byPrice && p.s != null && p.s < min && 'below'].filter(Boolean).join(' ');
-      const what = byPrice ? `${credits(p.price)} credits per 1M tokens, ${p.s == null ? `no ${label} yet` : `${label} ${score(p.s)}`}` : `${label} ${score(p.s)}`;
+      const what = byPrice ? `${credits(p.price)} credits par million de tokens, ${p.s == null ? `no ${label} yet` : `${label} ${score(p.s)}`}` : `${label} ${score(p.s)}`;
       const g = sv('g', { class: cls, tabindex: '0', role: 'img',
         'aria-label': `${p.m.model}, ${p.m.provider}, released ${fmtDate(p.m.released)}: ${what}` });
       g.style.setProperty('--c', colorOf(p.m.provider));
@@ -955,12 +954,12 @@ function init(ALL, SCORES, DATES, RELEASE_MAP, meta, scoresMeta) {
     add('Released', fmtDate(m.released), 'on');
     add(label, p.s == null ? 'not scored yet' : score(p.s), byPrice ? null : 'on');
     add('Blended / 1M', `${credits(p.price)} credits (${usd(p.price)})`, byPrice ? 'on' : null);
-    add('Price in / out', `${credits(m.input)} / ${credits(m.output)} credits`);
+    add("Prix entrée / sortie", `${credits(m.input)} / ${credits(m.output)} credits`);
     if (p.s != null) add(`Scores ≥ ${min}`, p.s >= min ? 'Yes' : 'No');
     tip.replaceChildren(head, el('div', 't-name', m.model), dl);
     if (p.aaName) tip.append(el('div', 't-note', `Artificial Analysis: ${p.aaName}`));
     if (m.note) tip.append(el('div', 't-note', m.note));
-    tip.append(pinned ? CopilotShared.pageLinks('timeline', m.model) : CopilotShared.hint('Click to compare it on the other pages'));
+    tip.append(pinned ? CopilotShared.pageLinks('timeline', m.model) : CopilotShared.hint("Cliquez pour comparer sur les autres pages"));
     tip.classList.toggle('pinned', !!pinned);
     tip.hidden = false;
 
@@ -1017,7 +1016,7 @@ function init(ALL, SCORES, DATES, RELEASE_MAP, meta, scoresMeta) {
     const dark = isDark();
     document.documentElement.classList.toggle('is-dark', dark);
     $('theme-toggle').setAttribute('aria-pressed', String(dark));
-    $('theme-label').textContent = dark ? 'Light mode' : 'Dark mode';
+    $('theme-label').textContent = dark ? 'Mode clair' : 'Mode sombre';
   };
   $('theme-toggle').addEventListener('click', () => {
     const next = isDark() ? 'light' : 'dark';

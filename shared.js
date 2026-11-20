@@ -4,6 +4,16 @@
 // - tooltips that pin on click so those links can be used,
 // - and the styles for these pieces.
 window.CopilotShared = (() => {
+  const refreshDate = document.getElementById('refresh-date');
+  if (refreshDate) {
+    fetch('data/refresh-meta.json', { cache: 'no-cache' }).then(r => r.ok ? r.json() : null).then(meta => {
+      if (!meta?.pricesCheckedAt) { refreshDate.textContent = 'Actualisation inconnue'; return; }
+      const date = new Date(meta.pricesCheckedAt);
+      if (Number.isNaN(date.getTime())) { refreshDate.textContent = 'Actualisation inconnue'; return; }
+      refreshDate.textContent = 'Prix : ' + new Intl.DateTimeFormat('fr-FR', { dateStyle: 'short', timeStyle: 'short', timeZone: 'Europe/Paris' }).format(date);
+      refreshDate.title = meta.scoresChecked ? 'Prix et scores vérifiés à cette date' : 'Prix vérifiés à cette date ; scores conservés';
+    }).catch(() => { refreshDate.textContent = 'Actualisation inconnue'; });
+  }
   const KEY = 'copilot-shared';
   // One agent step: files, history and prompt sent, an answer back. A rough size; real ones vary widely.
   const REQUEST_TOKENS = 50000;
@@ -12,15 +22,15 @@ window.CopilotShared = (() => {
   // USD amount → credits: one decimal below 10 (7.5), a whole number above (2,500).
   function credits(usd) {
     const c = Math.round(usd / CREDIT_USD * 1e4) / 1e4;
-    return c < 10 && c % 1 ? c.toFixed(c * 10 % 1 ? 2 : 1) : Math.round(c).toLocaleString('en-US');
+    return c < 10 && c % 1 ? c.toFixed(c * 10 % 1 ? 2 : 1) : Math.round(c).toLocaleString('fr-FR');
   }
   // Secondary USD figure next to a credit value.
   const usd = v => '$' + (v < 1 && Math.round(v * 1e4) % 100 ? v.toFixed(3) : v.toFixed(2));
   const PAGES = [
-    { id: 'cost', href: 'cost.html', label: '1 · Cost & value' },
+    { id: 'cost', href: 'cost.html', label: "1 · Coût et valeur" },
     { id: 'budget', href: 'tokens.html', label: '2 · Budget' },
-    { id: 'compare', href: 'compare.html', label: '3 · Compare' },
-    { id: 'timeline', href: 'timeline.html', label: '4 · Timeline' },
+    { id: 'compare', href: 'compare.html', label: "3 · Comparer" },
+    { id: 'timeline', href: 'timeline.html', label: "4 · Historique" },
   ];
 
   const css = `
@@ -93,10 +103,10 @@ window.CopilotShared = (() => {
         i.style.setProperty('--c', c.style.getPropertyValue('--c'));
         return i;
       }));
-      if (!chips.length || on.length === chips.length) return 'All';
-      if (!on.length) return 'None';
+      if (!chips.length || on.length === chips.length) return "Tous";
+      if (!on.length) return "Aucun";
       if (on.length === 1) return chipName(on[0]);
-      return `${on.length} of ${chips.length}`;
+      return `${on.length} sur ${chips.length}`;
     },
     mix() {
       const i = document.getElementById('mix-in')?.textContent ?? '';
@@ -106,7 +116,7 @@ window.CopilotShared = (() => {
     min: () => '≥ ' + document.getElementById('min').value,
     credits() {
       const v = Number(document.getElementById('credits').value) || 0;
-      return v.toLocaleString('en-US');
+      return v.toLocaleString('fr-FR');
     },
   };
   const sumBtns = [...document.querySelectorAll('.fb-btn[data-sum]')];
@@ -172,7 +182,7 @@ window.CopilotShared = (() => {
   function pageLinks(current, model) {
     const box = document.createElement('div');
     box.className = 't-links';
-    box.append('Compare on');
+    box.append("Comparer dans");
     PAGES.filter(p => p.id !== current).forEach(p => {
       const a = document.createElement('a');
       a.href = `${p.href}?focus=${encodeURIComponent(model)}`;
